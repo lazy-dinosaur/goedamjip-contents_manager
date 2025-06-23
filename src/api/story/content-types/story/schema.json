@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stories",
+  "info": {
+    "singularName": "story",
+    "pluralName": "stories",
+    "displayName": "Story"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "author": {
+      "type": "string",
+      "default": "ai"
+    },
+    "story_summary": {
+      "type": "text"
+    },
+    "tags": {
+      "type": "text"
+    },
+    "original_text": {
+      "type": "text",
+      "required": true
+    },
+    "converted_json": {
+      "type": "json",
+      "required": true
+    },
+    "view_count": {
+      "type": "biginteger",
+      "default": "0"
+    }
+  }
+}
