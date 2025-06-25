@@ -7,7 +7,7 @@
     "displayName": "Story"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -26,7 +26,7 @@
       "type": "text"
     },
     "original_text": {
-      "type": "text",
+      "type": "richtext",
       "required": true
     },
     "converted_json": {

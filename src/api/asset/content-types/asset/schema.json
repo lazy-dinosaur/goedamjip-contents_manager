@@ -7,7 +7,7 @@
     "displayName": "Asset"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -33,19 +33,20 @@
       "type": "enumeration",
       "enum": [
         "file",
-        "code",
-        "hybrid"
+        "hybrid",
+        "code"
       ]
     },
-    "implementation_details": {
-      "type": "json"
-    },
-    "file_url": {
-      "type": "string"
-    },
-    "is_active": {
-      "type": "boolean",
-      "default": true
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "category": {
       "type": "relation",
@@ -58,6 +59,13 @@
       "relation": "manyToOne",
       "target": "api::asset-subcategory.asset-subcategory",
       "inversedBy": "assets"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "sustain": {
+      "type": "boolean"
     }
   }
 }

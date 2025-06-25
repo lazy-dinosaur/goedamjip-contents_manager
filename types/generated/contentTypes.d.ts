@@ -419,7 +419,7 @@ export interface ApiAssetCategoryAssetCategory
     singularName: 'asset-category';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     asset_subcategories: Schema.Attribute.Relation<
@@ -456,7 +456,7 @@ export interface ApiAssetSubcategoryAssetSubcategory
     singularName: 'asset-subcategory';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     assets: Schema.Attribute.Relation<'oneToMany', 'api::asset.asset'>;
@@ -490,7 +490,7 @@ export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
     singularName: 'asset';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     category: Schema.Attribute.Relation<
@@ -502,10 +502,9 @@ export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     display_name: Schema.Attribute.String & Schema.Attribute.Required;
-    file_url: Schema.Attribute.String;
-    implementation_details: Schema.Attribute.JSON;
+    file: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     implementation_type: Schema.Attribute.Enumeration<
-      ['file', 'code', 'hybrid']
+      ['file', 'hybrid', 'code']
     >;
     is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     keywords: Schema.Attribute.Text;
@@ -517,6 +516,7 @@ export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::asset-subcategory.asset-subcategory'
     >;
+    sustain: Schema.Attribute.Boolean;
     tag_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -535,7 +535,7 @@ export interface ApiStoryStory extends Struct.CollectionTypeSchema {
     singularName: 'story';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     author: Schema.Attribute.String & Schema.Attribute.DefaultTo<'ai'>;
@@ -546,7 +546,7 @@ export interface ApiStoryStory extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::story.story'> &
       Schema.Attribute.Private;
-    original_text: Schema.Attribute.Text & Schema.Attribute.Required;
+    original_text: Schema.Attribute.RichText & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     story_summary: Schema.Attribute.Text;
     tags: Schema.Attribute.Text;
