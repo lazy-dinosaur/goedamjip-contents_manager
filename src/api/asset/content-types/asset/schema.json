@@ -30,7 +30,7 @@
       "required": true
     },
     "tags": {
-      "type": "text",
+      "type": "json",
       "required": true
     },
     "file": {

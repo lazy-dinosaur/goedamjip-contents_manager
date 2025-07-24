@@ -436,7 +436,7 @@ export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
     tag_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    tags: Schema.Attribute.Text & Schema.Attribute.Required;
+    tags: Schema.Attribute.JSON & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

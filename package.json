@@ -1,47 +1,46 @@
 {
-	"name": "goedamjip-contents-manager",
-	"version": "0.1.0",
-	"private": true,
-	"description": "A Strapi application",
-	"scripts": {
-		"build": "strapi build",
-		"console": "strapi console",
-		"deploy": "strapi deploy",
-		"dev": "strapi develop",
-		"develop": "strapi develop",
-		"start": "strapi start",
-		"strapi": "strapi",
-		"upgrade": "npx @strapi/upgrade latest",
-		"upgrade:dry": "npx @strapi/upgrade latest --dry"
-	},
-	"dependencies": {
-		"@strapi/plugin-cloud": "5.18.1",
-		"@strapi/plugin-users-permissions": "5.18.1",
-		"@strapi/strapi": "5.18.1",
-		"@supabase/supabase-js": "^2.50.0",
-		"axios": "^1.10.0",
-		"better-sqlite3": "^12.0.0",
-		"dotenv": "^16.5.0",
-		"pg": "8.8.0",
-		"react": "^18.0.0",
-		"react-dom": "^18.0.0",
-		"react-router-dom": "^6.0.0",
-		"strapi-plugin-string-array": "^1.2.3",
-		"strapi-provider-upload-supabase": "^1.0.0",
-		"styled-components": "^6.0.0"
-	},
-	"devDependencies": {
-		"@types/node": "^20",
-		"@types/react": "^18",
-		"@types/react-dom": "^18",
-		"typescript": "^5"
-	},
-	"engines": {
-		"node": ">=18.0.0 <=22.x.x",
-		"npm": ">=6.0.0"
-	},
-	"strapi": {
-		"uuid": "7cf41542-35b9-4188-8ed8-039c2b0be6b1",
-		"installId": "9b873022a5e985d5c9d70525ef44059b40993a51818881322028b9001c7796ff"
-	}
+  "name": "goedamjip-contents-manager",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.19.0",
+    "@strapi/plugin-users-permissions": "5.19.0",
+    "@strapi/strapi": "5.19.0",
+    "@supabase/supabase-js": "^2.52.1",
+    "axios": "^1.11.0",
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^16.6.1",
+    "pg": "8.8.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.1",
+    "strapi-provider-upload-supabase": "^1.0.0",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.9",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "7cf41542-35b9-4188-8ed8-039c2b0be6b1",
+    "installId": "9b873022a5e985d5c9d70525ef44059b40993a51818881322028b9001c7796ff"
+  }
 }
