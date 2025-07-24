@@ -410,78 +410,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAssetCategoryAssetCategory
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'asset_categories';
-  info: {
-    displayName: 'Asset Category';
-    pluralName: 'asset-categories';
-    singularName: 'asset-category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    asset_subcategories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::asset-subcategory.asset-subcategory'
-    >;
-    assets: Schema.Attribute.Relation<'oneToMany', 'api::asset.asset'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::asset-category.asset-category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiAssetSubcategoryAssetSubcategory
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'asset_subcategories';
-  info: {
-    displayName: 'Asset Subcategory';
-    pluralName: 'asset-subcategories';
-    singularName: 'asset-subcategory';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    assets: Schema.Attribute.Relation<'oneToMany', 'api::asset.asset'>;
-    category: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::asset-category.asset-category'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::asset-subcategory.asset-subcategory'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
   collectionName: 'assets';
   info: {
@@ -493,37 +421,25 @@ export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    category: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::asset-category.asset-category'
-    >;
+    category: Schema.Attribute.Enumeration<['SOUND', 'VISUAL', 'TEXT']> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    display_name: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     file: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    implementation_type: Schema.Attribute.Enumeration<
-      ['file', 'hybrid', 'code']
-    >;
-    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    keywords: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::asset.asset'> &
       Schema.Attribute.Private;
+    properties: Schema.Attribute.JSON;
     publishedAt: Schema.Attribute.DateTime;
-    subcategory: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::asset-subcategory.asset-subcategory'
-    >;
-    sustain: Schema.Attribute.Boolean;
     tag_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    tags: Schema.Attribute.Text & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    usage_guide: Schema.Attribute.Text;
   };
 }
 
@@ -1068,8 +984,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::asset-category.asset-category': ApiAssetCategoryAssetCategory;
-      'api::asset-subcategory.asset-subcategory': ApiAssetSubcategoryAssetSubcategory;
       'api::asset.asset': ApiAssetAsset;
       'api::story.story': ApiStoryStory;
       'plugin::content-releases.release': PluginContentReleasesRelease;

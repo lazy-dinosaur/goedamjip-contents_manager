@@ -16,26 +16,22 @@
       "required": true,
       "unique": true
     },
-    "display_name": {
-      "type": "string",
-      "required": true
+    "category": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "SOUND",
+        "VISUAL",
+        "TEXT"
+      ]
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
-    "usage_guide": {
-      "type": "text"
-    },
-    "keywords": {
-      "type": "text"
-    },
-    "implementation_type": {
-      "type": "enumeration",
-      "enum": [
-        "file",
-        "hybrid",
-        "code"
-      ]
+    "tags": {
+      "type": "text",
+      "required": true
     },
     "file": {
       "type": "media",
@@ -48,24 +44,8 @@
         "audios"
       ]
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::asset-category.asset-category",
-      "inversedBy": "assets"
-    },
-    "subcategory": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::asset-subcategory.asset-subcategory",
-      "inversedBy": "assets"
-    },
-    "is_active": {
-      "type": "boolean",
-      "default": true
-    },
-    "sustain": {
-      "type": "boolean"
+    "properties": {
+      "type": "json"
     }
   }
 }
