@@ -30,8 +30,12 @@
       "required": true
     },
     "tags": {
-      "type": "json",
-      "required": true
+      "type": "customField",
+      "customField": "plugin::tagsinput.tags",
+      "required": true,
+      "options": {
+        "apiUrl": ""
+      }
     },
     "file": {
       "type": "media",
