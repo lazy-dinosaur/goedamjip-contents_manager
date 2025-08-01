@@ -450,6 +450,48 @@ export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiStoryIngredientStoryIngredient
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'story_ingredients';
+  info: {
+    displayName: 'Story_ingredient';
+    pluralName: 'story-ingredients';
+    singularName: 'story-ingredient';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::story-ingredient.story-ingredient'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      [
+        'protagonist_archetypes',
+        'character_profiles',
+        'horror_attributes',
+        'plot_structures',
+        'ending_types',
+      ]
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStoryStory extends Struct.CollectionTypeSchema {
   collectionName: 'stories';
   info: {
@@ -992,6 +1034,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::asset.asset': ApiAssetAsset;
+      'api::story-ingredient.story-ingredient': ApiStoryIngredientStoryIngredient;
       'api::story.story': ApiStoryStory;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

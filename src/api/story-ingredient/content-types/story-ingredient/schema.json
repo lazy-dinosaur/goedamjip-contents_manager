@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "story_ingredients",
+  "info": {
+    "singularName": "story-ingredient",
+    "pluralName": "story-ingredients",
+    "displayName": "Story_ingredient"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "protagonist_archetypes",
+        "character_profiles",
+        "horror_attributes",
+        "plot_structures",
+        "ending_types"
+      ]
+    }
+  }
+}
