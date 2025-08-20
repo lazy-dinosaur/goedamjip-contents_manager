@@ -17,25 +17,18 @@
     },
     "author": {
       "type": "string",
-      "default": "ai"
-    },
-    "story_summary": {
-      "type": "text"
-    },
-    "tags": {
-      "type": "text"
-    },
-    "original_text": {
-      "type": "richtext",
+      "default": "ai",
       "required": true
     },
-    "converted_json": {
+    "base_story": {
+      "type": "richtext"
+    },
+    "metadata": {
       "type": "json",
       "required": true
     },
-    "view_count": {
-      "type": "biginteger",
-      "default": "0"
+    "contents": {
+      "type": "json"
     }
   }
 }

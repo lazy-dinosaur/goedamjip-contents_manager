@@ -450,6 +450,37 @@ export interface ApiAssetAsset extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPromptPrompt extends Struct.CollectionTypeSchema {
+  collectionName: 'prompts';
+  info: {
+    displayName: 'prompt';
+    pluralName: 'prompts';
+    singularName: 'prompt';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    instruction: Schema.Attribute.RichText & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::prompt.prompt'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStoryIngredientStoryIngredient
   extends Struct.CollectionTypeSchema {
   collectionName: 'story_ingredients';
@@ -503,23 +534,23 @@ export interface ApiStoryStory extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    author: Schema.Attribute.String & Schema.Attribute.DefaultTo<'ai'>;
-    converted_json: Schema.Attribute.JSON & Schema.Attribute.Required;
+    author: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'ai'>;
+    base_story: Schema.Attribute.RichText;
+    contents: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::story.story'> &
       Schema.Attribute.Private;
-    original_text: Schema.Attribute.RichText & Schema.Attribute.Required;
+    metadata: Schema.Attribute.JSON & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    story_summary: Schema.Attribute.Text;
-    tags: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    view_count: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
   };
 }
 
@@ -1034,6 +1065,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::asset.asset': ApiAssetAsset;
+      'api::prompt.prompt': ApiPromptPrompt;
       'api::story-ingredient.story-ingredient': ApiStoryIngredientStoryIngredient;
       'api::story.story': ApiStoryStory;
       'plugin::content-releases.release': PluginContentReleasesRelease;
