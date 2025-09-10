@@ -1,0 +1,48 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>🐳 Goedamjip Docker Files</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+            .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+            h1 { color: #2c3e50; text-align: center; }
+            ul { list-style: none; padding: 0; }
+            li { margin: 10px 0; padding: 15px; background: #ecf0f1; border-radius: 5px; }
+            a { text-decoration: none; color: #3498db; font-weight: bold; }
+            a:hover { color: #2980b9; }
+            .instructions { background: #e8f5e8; padding: 20px; border-radius: 5px; margin-top: 20px; }
+            .code { background: #2c3e50; color: #ecf0f1; padding: 10px; border-radius: 3px; font-family: monospace; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🐳 Goedamjip Docker Files</h1>
+            <p>Termux에서 사용할 파일들을 다운로드하세요:</p>
+            
+            <ul>
+                <li><a href="goedamjip.tar.gz">📦 goedamjip.tar.gz</a> (1045.6MB)</li><li><a href=".env">⚙️ .env</a></li><li><a href=".env.docker.example">⚙️ .env.docker.example</a></li><li><a href="scripts/termux-run.sh">📜 scripts/termux-run.sh</a></li><li><a href="scripts/docker-deploy.sh">📜 scripts/docker-deploy.sh</a></li>
+            </ul>
+            
+            <div class="instructions">
+                <h3>📱 Termux에서 실행 방법:</h3>
+                <div class="code">
+                # 1. 파일 다운로드<br>
+                wget http://IP:8000/goedamjip.tar.gz<br>
+                wget http://IP:8000/.env<br>
+                wget http://IP:8000/scripts/termux-run.sh<br><br>
+                
+                # 2. Docker 이미지 로드<br>
+                gunzip -c goedamjip.tar.gz | docker load<br><br>
+                
+                # 3. 실행<br>
+                chmod +x termux-run.sh<br>
+                ./termux-run.sh
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    

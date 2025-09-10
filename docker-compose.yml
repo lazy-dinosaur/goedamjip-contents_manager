@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: goedamjip-strapi
+    restart: unless-stopped
+    ports:
+      - "1337:1337"
+    env_file:
+      - .env
+    volumes:
+      # Persistent uploads
+      - ./public/uploads:/app/public/uploads
+      # Temporary files (optional persistence)
+      - ./.tmp:/app/.tmp
+    networks:
+      - goedamjip-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:1337/_health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - postgres
+
+  # Optional: Local PostgreSQL (if not using Supabase)
+  postgres:
+    image: postgres:15-alpine
+    container_name: goedamjip-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - goedamjip-network
+    profiles:
+      - local-db  # Only start with: docker-compose --profile local-db up
+
+  # Optional: pgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: goedamjip-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@goedamjip.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - goedamjip-network
+    profiles:
+      - local-db
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  goedamjip-network:
+    driver: bridge
